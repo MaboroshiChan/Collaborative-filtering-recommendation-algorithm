@@ -25,6 +25,11 @@ class CF:
                 self.similarity_table[i][j] = self.sim(i, j)
                 print(self.sim(i, j), "sim")
         print(self.table)
+    
+    """
+    This function based on correlation calculates the similarity of itemA and itemB.
+    Here in the implementation, the expression of the function is transformed into the language linear algebra. 
+    """
     def sim(self, itemA, itemB):
         x = self.table[itemA - 1] - self.user_average
         y = self.table[itemB - 1] - self.user_average

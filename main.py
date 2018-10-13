@@ -3,6 +3,11 @@ import pandas as pd
 class CF:
 
     def __init__(self, numMovies, numUsers, topK):
+        """
+        type numMovies: int
+        type numUsers: int
+        type topK: int
+        """
         self.numMovies = numMovies
         self.numUsers = numUsers
         self.table = np.full((numMovies, numUsers), -1.0)
@@ -26,17 +31,28 @@ class CF:
                 print(self.sim(i, j), "sim")
         print(self.table)
     
-    """
+  
+    def sim(self, itemA, itemB):
+          """
     This function based on correlation calculates the similarity of itemA and itemB.
     Here in the implementation, the expression of the function is transformed into the language linear algebra. 
-    """
-    def sim(self, itemA, itemB):
+          
+          type itemA: int
+          type itemB: int
+          rtype: double
+          """
         x = self.table[itemA - 1] - self.user_average
         y = self.table[itemB - 1] - self.user_average
         ans = np.dot(x, y)/(np.linalg.norm(x)*np.linalg.norm(y))
         return ans*ans
 
     def pred(self, userID, item):
+        """
+        predict funtion
+        type userID: int
+        type item: int
+        rtype: double
+        """
         numer = 0.0
         denom = 0.0
         for N in range(0, self.numMovies):
